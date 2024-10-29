@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://KinematicBody2D.tscn" type="PackedScene" id=1]
+[ext_resource path="res://headsoccer/headsoccer/estadioOficial.jpg" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 801.75, 82.5 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 807, 46 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 30, 451 )
+
+[node name="cancha" type="Node2D"]
+
+[node name="EstadioOficial" type="Sprite" parent="."]
+position = Vector2( 798.406, 451 )
+scale = Vector2( 0.796593, 0.797513 )
+texture = ExtResource( 2 )
+
+[node name="brazilPlayer" parent="." instance=ExtResource( 1 )]
+position = Vector2( 173, 611 )
+
+[node name="suelo" type="StaticBody2D" parent="."]
+position = Vector2( -20, 705 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="colisionJuego" type="CollisionShape2D" parent="suelo"]
+position = Vector2( 819, 113 )
+shape = SubResource( 1 )
+
+[node name="techo" type="StaticBody2D" parent="."]
+position = Vector2( -2, 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="techo"]
+position = Vector2( 797, 36 )
+shape = SubResource( 2 )
+
+[node name="pared" type="StaticBody2D" parent="."]
+position = Vector2( -234, 442 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pared"]
+position = Vector2( 260, 5 )
+shape = SubResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2( 1567, 449 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 0, -2 )
+shape = SubResource( 3 )

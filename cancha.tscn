@@ -1,9 +1,13 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://KinematicBody2D.tscn" type="PackedScene" id=1]
 [ext_resource path="res://headsoccer/headsoccer/estadioOficial.jpg" type="Texture" id=2]
 [ext_resource path="res://spainPlayer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://spainPlayer.gd" type="Script" id=4]
+[ext_resource path="res://headsoccer/headsoccer/UI and Objects/Goal parts/Proyecto nuevo (1).png" type="Texture" id=5]
+[ext_resource path="res://headsoccer/headsoccer/UI and Objects/Goal parts/Lado.png" type="Texture" id=6]
+[ext_resource path="res://headsoccer/headsoccer/UI and Objects/Goal parts/Lado2.png" type="Texture" id=7]
+[ext_resource path="res://headsoccer/headsoccer/UI and Objects/Goal parts/Porteria2.png" type="Texture" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 801.75, 82.5 )
@@ -17,9 +21,19 @@ extents = Vector2( 30, 451 )
 [node name="cancha" type="Node2D"]
 
 [node name="EstadioOficial" type="Sprite" parent="."]
-position = Vector2( 798.406, 451 )
+position = Vector2( 797, 446 )
 scale = Vector2( 0.796593, 0.797513 )
 texture = ExtResource( 2 )
+
+[node name="Lado2" type="Sprite" parent="."]
+position = Vector2( 1592, 538 )
+scale = Vector2( 0.644688, 0.644688 )
+texture = ExtResource( 7 )
+
+[node name="Lado" type="Sprite" parent="."]
+position = Vector2( -7, 537 )
+scale = Vector2( 0.645938, 0.664158 )
+texture = ExtResource( 6 )
 
 [node name="spainplayer" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1241, 611 )
@@ -27,6 +41,16 @@ script = ExtResource( 4 )
 
 [node name="brazilPlayer" parent="." instance=ExtResource( 1 )]
 position = Vector2( 173, 611 )
+
+[node name="Porteria2" type="Sprite" parent="."]
+position = Vector2( 1652, 586 )
+scale = Vector2( 0.664375, 0.664375 )
+texture = ExtResource( 8 )
+
+[node name="ProyectoNuevo" type="Sprite" parent="."]
+position = Vector2( -64, 582 )
+scale = Vector2( 0.658521, 0.658521 )
+texture = ExtResource( 5 )
 
 [node name="suelo" type="StaticBody2D" parent="."]
 visible = false

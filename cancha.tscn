@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://KinematicBody2D.tscn" type="PackedScene" id=1]
 [ext_resource path="res://headsoccer/headsoccer/estadioOficial.jpg" type="Texture" id=2]
@@ -8,6 +8,9 @@
 [ext_resource path="res://headsoccer/headsoccer/UI and Objects/Goal parts/Lado.png" type="Texture" id=6]
 [ext_resource path="res://headsoccer/headsoccer/UI and Objects/Goal parts/Lado2.png" type="Texture" id=7]
 [ext_resource path="res://headsoccer/headsoccer/UI and Objects/Goal parts/Porteria2.png" type="Texture" id=8]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 53, 112.5 )
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 801.75, 82.5 )
@@ -47,10 +50,45 @@ position = Vector2( 1341, 449 )
 scale = Vector2( 0.583438, 0.602187 )
 texture = ExtResource( 8 )
 
+[node name="StaticBody2D2" type="StaticBody2D" parent="Porteria2"]
+position = Vector2( -2533.26, 210.898 )
+scale = Vector2( 1.71398, 1.66061 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Porteria2/StaticBody2D2"]
+position = Vector2( 1436, -91 )
+shape = SubResource( 4 )
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Porteria2"]
+position = Vector2( -2533.26, 210.898 )
+scale = Vector2( 1.71398, 1.66061 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Porteria2/StaticBody2D3"]
+position = Vector2( 1389, -299 )
+rotation = 0.706976
+shape = SubResource( 4 )
+
 [node name="ProyectoNuevo" type="Sprite" parent="."]
 position = Vector2( -82.5, 449.204 )
 scale = Vector2( 0.63375, 0.62051 )
 texture = ExtResource( 5 )
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="ProyectoNuevo"]
+position = Vector2( -85.9961, 204.342 )
+scale = Vector2( 1.57791, 1.61158 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ProyectoNuevo/StaticBody2D4"]
+position = Vector2( 99, -83 )
+shape = SubResource( 4 )
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="ProyectoNuevo"]
+position = Vector2( -85.9961, 204.342 )
+rotation = -0.0190492
+scale = Vector2( 1.57791, 1.61158 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ProyectoNuevo/StaticBody2D5"]
+position = Vector2( 156.754, -294.127 )
+rotation = -0.693857
+shape = SubResource( 4 )
 
 [node name="suelo" type="StaticBody2D" parent="."]
 visible = false

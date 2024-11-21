@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://KinematicBody2D.tscn" type="PackedScene" id=1]
 [ext_resource path="res://headsoccer/headsoccer/estadioOficial.jpg" type="Texture" id=2]
@@ -12,12 +12,14 @@
 [ext_resource path="res://cancha.gd" type="Script" id=10]
 [ext_resource path="res://Pelota.gd" type="Script" id=11]
 [ext_resource path="res://headsoccer/headsoccer/UI and Objects/Text/Goal.png" type="Texture" id=12]
+[ext_resource path="res://headsoccer/headsoccer/marcador.png" type="Texture" id=13]
+[ext_resource path="res://headsoccer/headsoccer/arco/ARCO for OSX.otf" type="DynamicFontData" id=14]
 
 [sub_resource type="CircleShape2D" id=5]
 radius = 27.0
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 62.5, 127.315 )
+extents = Vector2( 64.7499, 127.658 )
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 801.75, 82.5 )
@@ -28,6 +30,14 @@ extents = Vector2( 807, 46 )
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 30, 451 )
 
+[sub_resource type="DynamicFont" id=7]
+size = 31
+font_data = ExtResource( 14 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 31
+font_data = ExtResource( 14 )
+
 [node name="cancha" type="Node2D"]
 script = ExtResource( 10 )
 
@@ -35,6 +45,14 @@ script = ExtResource( 10 )
 position = Vector2( 639.703, 358.5 )
 scale = Vector2( 0.639296, 0.638543 )
 texture = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Marcador" type="Sprite" parent="."]
+position = Vector2( 648, 126 )
+scale = Vector2( 0.274232, 0.274232 )
+texture = ExtResource( 13 )
 
 [node name="Lado2" type="Sprite" parent="."]
 position = Vector2( 1296.28, 408.609 )
@@ -67,6 +85,28 @@ one_way_collision_margin = 0.0
 scale = Vector2( 0.410705, 0.410705 )
 texture = ExtResource( 9 )
 
+[node name="Porteria1" type="Sprite" parent="."]
+position = Vector2( -82.5, 449.204 )
+scale = Vector2( 0.63375, 0.62051 )
+texture = ExtResource( 5 )
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="Porteria1"]
+position = Vector2( -104.94, 233.354 )
+rotation = -0.0190492
+scale = Vector2( 1.57791, 1.61158 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Porteria1/StaticBody2D5"]
+position = Vector2( 144.081, -309.377 )
+rotation = -0.693857
+shape = SubResource( 4 )
+
+[node name="Area2D" type="Area2D" parent="Porteria1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Porteria1/Area2D"]
+position = Vector2( 57.5937, 160.829 )
+scale = Vector2( 1.57791, 1.61158 )
+shape = SubResource( 4 )
+
 [node name="Porteria2" type="Sprite" parent="."]
 position = Vector2( 1341, 449 )
 scale = Vector2( 0.583438, 0.602187 )
@@ -85,30 +125,8 @@ shape = SubResource( 4 )
 [node name="Area2DDerecha" type="Area2D" parent="Porteria2"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Porteria2/Area2DDerecha"]
-position = Vector2( -52.2764, 111.884 )
+position = Vector2( -55.2756, 104.05 )
 scale = Vector2( 1.71398, 1.66061 )
-shape = SubResource( 4 )
-
-[node name="Porteria1" type="Sprite" parent="."]
-position = Vector2( -82.5, 449.204 )
-scale = Vector2( 0.63375, 0.62051 )
-texture = ExtResource( 5 )
-
-[node name="StaticBody2D5" type="StaticBody2D" parent="Porteria1"]
-position = Vector2( -104.94, 233.354 )
-rotation = -0.0190492
-scale = Vector2( 1.57791, 1.61158 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Porteria1/StaticBody2D5"]
-position = Vector2( 104.906, -356.101 )
-rotation = -0.693857
-shape = SubResource( 4 )
-
-[node name="Area2D" type="Area2D" parent="Porteria1"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Porteria1/Area2D"]
-position = Vector2( 57.5937, 160.829 )
-scale = Vector2( 1.57791, 1.61158 )
 shape = SubResource( 4 )
 
 [node name="suelo" type="StaticBody2D" parent="."]
@@ -157,10 +175,11 @@ position = Vector2( 0, -2 )
 shape = SubResource( 3 )
 
 [node name="MarcadorDerecha" type="Label" parent="."]
-margin_left = 706.0
-margin_top = 109.0
-margin_right = 746.0
-margin_bottom = 123.0
+margin_left = 707.0
+margin_top = 124.0
+margin_right = 747.0
+margin_bottom = 158.0
+custom_fonts/font = SubResource( 7 )
 text = "O"
 
 [node name="gol" type="Sprite" parent="."]
@@ -170,15 +189,16 @@ scale = Vector2( 0.695833, 0.695833 )
 texture = ExtResource( 12 )
 
 [node name="MarcadorIzquierda" type="Label" parent="."]
-margin_left = 510.0
-margin_top = 106.0
-margin_right = 550.0
-margin_bottom = 120.0
-text = "O"
+margin_left = 573.0
+margin_top = 122.0
+margin_right = 613.0
+margin_bottom = 156.0
+custom_fonts/font = SubResource( 6 )
+text = "0"
 
 [node name="GolTimer" type="Timer" parent="."]
 
 [connection signal="body_entered" from="Pelota" to="Pelota" method="_on_Pelota_body_entered"]
+[connection signal="body_entered" from="Porteria1/Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="area_entered" from="Porteria2/Area2DDerecha" to="." method="_on_Area2D_area_entered"]
 [connection signal="body_entered" from="Porteria2/Area2DDerecha" to="." method="_on_Area2DDerecha_body_entered"]
-[connection signal="body_entered" from="Porteria1/Area2D" to="." method="_on_Area2D_body_entered"]

@@ -18,7 +18,7 @@ var movimiento = Vector2.ZERO
 
 # Referencia al AnimatedSprite
 onready var animacion = $AnimatedSprite
-
+onready var pelota = get_node("/root/cancha/Pelota")
 func _ready():
 	# Asegurarse de que el personaje siempre mire hacia la izquierda
 	animacion.flip_h = true
@@ -75,7 +75,8 @@ func _physics_process(delta):
 			realizando_chute = true
 			chute_timer = chute_duracion # Duración del chute
 			animacion.play("chutar") # Reproduce la animación de chute
-
+			chute_pelota()
+			
 		# Aplicar la velocidad de movimiento horizontal
 		movimiento.x *= velocidad
 
@@ -91,3 +92,12 @@ func _physics_process(delta):
 	# Revisar si está en el suelo para resetear la velocidad vertical
 	if is_on_floor():
 		velocidad_y = 0
+		
+func chute_pelota():
+	var distancia = (pelota.global_position - global_position).length()
+	print("Distancia a la pelota:", distancia)
+	# Verificar si la pelota está cerca del jugador
+	if (pelota.global_position - global_position).length() < 200: 
+		print("La pelota está cerca")# Ajusta el rango según sea necesario
+		pelota.chutar(Vector2(-360, -450)) # Llama al método "chutar" de la pelota
+

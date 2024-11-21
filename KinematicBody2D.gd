@@ -19,71 +19,75 @@ var movimiento = Vector2.ZERO
 # Referencia al AnimatedSprite
 onready var animacion = $AnimatedSprite
 
+# Referencia a la pelota
+onready var pelota = get_node("/root/cancha/Pelota")
+
 func _physics_process(delta):
 	# Si está en modo "entrada", manejarlo por separado
 	if realizando_entrada:
-		# Descontar el tiempo del temporizador
 		entrada_timer -= delta
 		if entrada_timer <= 0:
-			# Si el tiempo ha terminado, detener la entrada
 			realizando_entrada = false
 			velocidad = 200 # Restaurar la velocidad normal
-		
-		# Aplicar el movimiento de entrada (siempre hacia adelante, derecha)
 		movimiento.x = velocidad_entrada
 
-	# Si está en modo "chute", manejarlo por separado
 	elif realizando_chute:
-		# Descontar el tiempo del temporizador de chute
 		chute_timer -= delta
 		if chute_timer <= 0:
-			# Si el tiempo ha terminado, detener el chute
 			realizando_chute = false
-			animacion.play("default") # Volver a la animación predeterminada después del chute
+			animacion.play("default") # Volver a la animación predeterminada
 
 	else:
-		# Movimiento horizontal con las teclas ASDW
-		movimiento.x = 0 # Resetear la dirección horizontal en cada frame
+		# Movimiento horizontal
+		movimiento.x = 0
 		if Input.is_action_pressed("jugador1derecha"): # D
 			movimiento.x += 1
-			animacion.play("caminar") # Reproduce la animación de caminar
+			animacion.play("caminar")
 		elif Input.is_action_pressed("jugador1izquierda"): # A
 			movimiento.x -= 1
-			animacion.play("retroceder") # Reproduce la animación de caminar hacia la izquierda
-		
-		# Salto con la barra espaciadora
+			animacion.play("retroceder")
+
+		# Salto
 		if is_on_floor():
 			if Input.is_action_just_pressed("jugador1salto"): # Espacio
 				velocidad_y = fuerza_salto
-				animacion.play("saltar") # Reproduce la animación de salto
+				animacion.play("saltar")
 			elif movimiento.x == 0 and not realizando_chute:
-				animacion.play("default") # Si está quieto en el suelo
-		
-		# Iniciar la entrada con la tecla "Q", solo si va hacia adelante o está quieto
-		if Input.is_action_just_pressed("jugador1entrada") and movimiento.x >= 0: # Solo si está quieto o moviéndose hacia la derecha
+				animacion.play("default")
+
+		# Entrada
+		if Input.is_action_just_pressed("jugador1entrada") and movimiento.x >= 0:
 			realizando_entrada = true
-			entrada_timer = entrada_duracion # Duración de la entrada
-			velocidad_entrada = 300 # Velocidad durante la entrada
-			animacion.play("entrada") # Reproducir la animación de entrada
+			entrada_timer = entrada_duracion
+			velocidad_entrada = 300
+			animacion.play("entrada")
 
-		# Acción de "chute" con la tecla "K" (asignada a ui_kick)
-		if Input.is_action_just_pressed("jugador1chute"): # Tecla de chute (patada)
+		# Chute
+		if Input.is_action_just_pressed("jugador1chute"):
+			print("chute ")
 			realizando_chute = true
-			chute_timer = chute_duracion # Duración del chute
-			animacion.play("chutar") # Reproduce la animación de chute
+			chute_timer = chute_duracion
+			animacion.play("chutar")
+			chute_pelota() # Llama a la función para chutar la pelota
 
-		# Aplicar la velocidad de movimiento horizontal
+		# Aplicar movimiento horizontal
 		movimiento.x *= velocidad
 
-	# Aplicar la gravedad siempre
+	# Aplicar gravedad
 	velocidad_y += gravedad * delta
-
-	# Asignar la velocidad vertical al movimiento
 	movimiento.y = velocidad_y
 
 	# Mover el personaje
 	movimiento = move_and_slide(movimiento, Vector2.UP)
 
-	# Revisar si está en el suelo para resetear la velocidad vertical
+	# Revisar si está en el suelo
 	if is_on_floor():
 		velocidad_y = 0
+
+func chute_pelota():
+	var distancia = (pelota.global_position - global_position).length()
+	print("Distancia a la pelota:", distancia)
+	# Verificar si la pelota está cerca del jugador
+	if (pelota.global_position - global_position).length() < 200: 
+		print("La pelota está cerca")# Ajusta el rango según sea necesario
+		pelota.chutar(Vector2(360, -450)) # Llama al método "chutar" de la pelota

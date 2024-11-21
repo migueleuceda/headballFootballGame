@@ -21,40 +21,40 @@ extents = Vector2( 30, 451 )
 [node name="cancha" type="Node2D"]
 
 [node name="EstadioOficial" type="Sprite" parent="."]
-position = Vector2( 797, 446 )
-scale = Vector2( 0.796593, 0.797513 )
+position = Vector2( 639.703, 358.5 )
+scale = Vector2( 0.639296, 0.638543 )
 texture = ExtResource( 2 )
 
 [node name="Lado2" type="Sprite" parent="."]
-position = Vector2( 1592, 538 )
-scale = Vector2( 0.644688, 0.644688 )
+position = Vector2( 1296.28, 408.609 )
+scale = Vector2( 0.614297, 0.609024 )
 texture = ExtResource( 7 )
 
 [node name="Lado" type="Sprite" parent="."]
-position = Vector2( -7, 537 )
-scale = Vector2( 0.645938, 0.664158 )
+position = Vector2( -22, 405 )
+scale = Vector2( 0.597969, 0.618329 )
 texture = ExtResource( 6 )
 
 [node name="spainplayer" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1241, 611 )
+position = Vector2( 981, 489 )
 script = ExtResource( 4 )
 
 [node name="brazilPlayer" parent="." instance=ExtResource( 1 )]
-position = Vector2( 173, 611 )
+position = Vector2( 119, 472 )
 
 [node name="Porteria2" type="Sprite" parent="."]
-position = Vector2( 1652, 586 )
-scale = Vector2( 0.664375, 0.664375 )
+position = Vector2( 1341, 449 )
+scale = Vector2( 0.583438, 0.602187 )
 texture = ExtResource( 8 )
 
 [node name="ProyectoNuevo" type="Sprite" parent="."]
-position = Vector2( -64, 582 )
-scale = Vector2( 0.658521, 0.658521 )
+position = Vector2( -82.5, 449.204 )
+scale = Vector2( 0.63375, 0.62051 )
 texture = ExtResource( 5 )
 
 [node name="suelo" type="StaticBody2D" parent="."]
 visible = false
-position = Vector2( -20, 705 )
+position = Vector2( -137, 576 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -79,7 +79,8 @@ visible = false
 position = Vector2( -234, 442 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="pared"]
-position = Vector2( 260, 5 )
+visible = false
+position = Vector2( 203, 8 )
 shape = SubResource( 3 )
 __meta__ = {
 "_edit_group_": true
@@ -87,7 +88,7 @@ __meta__ = {
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 visible = false
-position = Vector2( 1567, 449 )
+position = Vector2( 1310, 373 )
 __meta__ = {
 "_edit_group_": true
 }

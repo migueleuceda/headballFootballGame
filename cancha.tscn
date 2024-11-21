@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://KinematicBody2D.tscn" type="PackedScene" id=1]
 [ext_resource path="res://headsoccer/headsoccer/estadioOficial.jpg" type="Texture" id=2]
@@ -8,9 +8,16 @@
 [ext_resource path="res://headsoccer/headsoccer/UI and Objects/Goal parts/Lado.png" type="Texture" id=6]
 [ext_resource path="res://headsoccer/headsoccer/UI and Objects/Goal parts/Lado2.png" type="Texture" id=7]
 [ext_resource path="res://headsoccer/headsoccer/UI and Objects/Goal parts/Porteria2.png" type="Texture" id=8]
+[ext_resource path="res://headsoccer/headsoccer/UI and Objects/Ball/Ball 01.png" type="Texture" id=9]
+[ext_resource path="res://cancha.gd" type="Script" id=10]
+[ext_resource path="res://Pelota.gd" type="Script" id=11]
+[ext_resource path="res://headsoccer/headsoccer/UI and Objects/Text/Goal.png" type="Texture" id=12]
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 27.0
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 53, 112.5 )
+extents = Vector2( 62.5, 127.315 )
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 801.75, 82.5 )
@@ -22,6 +29,7 @@ extents = Vector2( 807, 46 )
 extents = Vector2( 30, 451 )
 
 [node name="cancha" type="Node2D"]
+script = ExtResource( 10 )
 
 [node name="EstadioOficial" type="Sprite" parent="."]
 position = Vector2( 639.703, 358.5 )
@@ -38,56 +46,69 @@ position = Vector2( -22, 405 )
 scale = Vector2( 0.597969, 0.618329 )
 texture = ExtResource( 6 )
 
-[node name="spainplayer" parent="." instance=ExtResource( 3 )]
+[node name="spainplayer" parent="." groups=["player"] instance=ExtResource( 3 )]
 position = Vector2( 981, 489 )
 script = ExtResource( 4 )
 
-[node name="brazilPlayer" parent="." instance=ExtResource( 1 )]
+[node name="brazilPlayer" parent="." groups=["player"] instance=ExtResource( 1 )]
 position = Vector2( 119, 472 )
+
+[node name="Pelota" type="RigidBody2D" parent="." groups=["Bola"]]
+position = Vector2( 634, 562 )
+mass = 17.85
+gravity_scale = 3.5
+script = ExtResource( 11 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pelota"]
+shape = SubResource( 5 )
+one_way_collision_margin = 0.0
+
+[node name="Sprite" type="Sprite" parent="Pelota"]
+scale = Vector2( 0.410705, 0.410705 )
+texture = ExtResource( 9 )
 
 [node name="Porteria2" type="Sprite" parent="."]
 position = Vector2( 1341, 449 )
 scale = Vector2( 0.583438, 0.602187 )
 texture = ExtResource( 8 )
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="Porteria2"]
-position = Vector2( -2533.26, 210.898 )
-scale = Vector2( 1.71398, 1.66061 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Porteria2/StaticBody2D2"]
-position = Vector2( 1436, -91 )
-shape = SubResource( 4 )
-
 [node name="StaticBody2D3" type="StaticBody2D" parent="Porteria2"]
 position = Vector2( -2533.26, 210.898 )
 scale = Vector2( 1.71398, 1.66061 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Porteria2/StaticBody2D3"]
-position = Vector2( 1389, -299 )
+position = Vector2( 1413.28, -296.822 )
 rotation = 0.706976
+scale = Vector2( 0.684224, 1.00621 )
 shape = SubResource( 4 )
 
-[node name="ProyectoNuevo" type="Sprite" parent="."]
+[node name="Area2DDerecha" type="Area2D" parent="Porteria2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Porteria2/Area2DDerecha"]
+position = Vector2( -52.2764, 111.884 )
+scale = Vector2( 1.71398, 1.66061 )
+shape = SubResource( 4 )
+
+[node name="Porteria1" type="Sprite" parent="."]
 position = Vector2( -82.5, 449.204 )
 scale = Vector2( 0.63375, 0.62051 )
 texture = ExtResource( 5 )
 
-[node name="StaticBody2D4" type="StaticBody2D" parent="ProyectoNuevo"]
-position = Vector2( -85.9961, 204.342 )
-scale = Vector2( 1.57791, 1.61158 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ProyectoNuevo/StaticBody2D4"]
-position = Vector2( 99, -83 )
-shape = SubResource( 4 )
-
-[node name="StaticBody2D5" type="StaticBody2D" parent="ProyectoNuevo"]
-position = Vector2( -85.9961, 204.342 )
+[node name="StaticBody2D5" type="StaticBody2D" parent="Porteria1"]
+position = Vector2( -104.94, 233.354 )
 rotation = -0.0190492
 scale = Vector2( 1.57791, 1.61158 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ProyectoNuevo/StaticBody2D5"]
-position = Vector2( 156.754, -294.127 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Porteria1/StaticBody2D5"]
+position = Vector2( 104.906, -356.101 )
 rotation = -0.693857
+shape = SubResource( 4 )
+
+[node name="Area2D" type="Area2D" parent="Porteria1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Porteria1/Area2D"]
+position = Vector2( 57.5937, 160.829 )
+scale = Vector2( 1.57791, 1.61158 )
 shape = SubResource( 4 )
 
 [node name="suelo" type="StaticBody2D" parent="."]
@@ -134,3 +155,30 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2( 0, -2 )
 shape = SubResource( 3 )
+
+[node name="MarcadorDerecha" type="Label" parent="."]
+margin_left = 706.0
+margin_top = 109.0
+margin_right = 746.0
+margin_bottom = 123.0
+text = "O"
+
+[node name="gol" type="Sprite" parent="."]
+visible = false
+position = Vector2( 635, 246 )
+scale = Vector2( 0.695833, 0.695833 )
+texture = ExtResource( 12 )
+
+[node name="MarcadorIzquierda" type="Label" parent="."]
+margin_left = 510.0
+margin_top = 106.0
+margin_right = 550.0
+margin_bottom = 120.0
+text = "O"
+
+[node name="GolTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="Pelota" to="Pelota" method="_on_Pelota_body_entered"]
+[connection signal="area_entered" from="Porteria2/Area2DDerecha" to="." method="_on_Area2D_area_entered"]
+[connection signal="body_entered" from="Porteria2/Area2DDerecha" to="." method="_on_Area2DDerecha_body_entered"]
+[connection signal="body_entered" from="Porteria1/Area2D" to="." method="_on_Area2D_body_entered"]

@@ -88,6 +88,6 @@ func chute_pelota():
 	var distancia = (pelota.global_position - global_position).length()
 	print("Distancia a la pelota:", distancia)
 	# Verificar si la pelota está cerca del jugador
-	if (pelota.global_position - global_position).length() < 200: 
+	if (pelota.global_position - global_position).length() < 150: 
 		print("La pelota está cerca")# Ajusta el rango según sea necesario
 		pelota.chutar(Vector2(360, -450)) # Llama al método "chutar" de la pelota

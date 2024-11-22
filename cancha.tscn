@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://KinematicBody2D.tscn" type="PackedScene" id=1]
 [ext_resource path="res://headsoccer/headsoccer/estadioOficial.jpg" type="Texture" id=2]
@@ -12,8 +12,14 @@
 [ext_resource path="res://cancha.gd" type="Script" id=10]
 [ext_resource path="res://Pelota.gd" type="Script" id=11]
 [ext_resource path="res://headsoccer/headsoccer/UI and Objects/Text/Goal.png" type="Texture" id=12]
-[ext_resource path="res://headsoccer/headsoccer/marcador.png" type="Texture" id=13]
+[ext_resource path="res://headsoccer/headsoccer/marcador (2).png" type="Texture" id=13]
 [ext_resource path="res://headsoccer/headsoccer/arco/ARCO for OSX.otf" type="DynamicFontData" id=14]
+[ext_resource path="res://headsoccer/headsoccer/UI and Objects/Button/Normal/Button Normal-01.png" type="Texture" id=15]
+[ext_resource path="res://headsoccer/headsoccer/Fondo-gris-transparente-2.png" type="Texture" id=16]
+[ext_resource path="res://headsoccer/headsoccer/UI and Objects/Button/Normal/Button Normal-36.png" type="Texture" id=17]
+
+[sub_resource type="PhysicsMaterial" id=8]
+bounce = 0.7
 
 [sub_resource type="CircleShape2D" id=5]
 radius = 27.0
@@ -30,12 +36,20 @@ extents = Vector2( 807, 46 )
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 30, 451 )
 
+[sub_resource type="DynamicFont" id=10]
+size = 60
+font_data = ExtResource( 14 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 20
+font_data = ExtResource( 14 )
+
 [sub_resource type="DynamicFont" id=7]
-size = 31
+size = 28
 font_data = ExtResource( 14 )
 
 [sub_resource type="DynamicFont" id=6]
-size = 31
+size = 28
 font_data = ExtResource( 14 )
 
 [node name="cancha" type="Node2D"]
@@ -48,11 +62,6 @@ texture = ExtResource( 2 )
 __meta__ = {
 "_edit_lock_": true
 }
-
-[node name="Marcador" type="Sprite" parent="."]
-position = Vector2( 648, 126 )
-scale = Vector2( 0.274232, 0.274232 )
-texture = ExtResource( 13 )
 
 [node name="Lado2" type="Sprite" parent="."]
 position = Vector2( 1296.28, 408.609 )
@@ -73,7 +82,8 @@ position = Vector2( 119, 472 )
 
 [node name="Pelota" type="RigidBody2D" parent="." groups=["Bola"]]
 position = Vector2( 634, 562 )
-mass = 17.85
+mass = 10.0
+physics_material_override = SubResource( 8 )
 gravity_scale = 3.5
 script = ExtResource( 11 )
 
@@ -96,7 +106,7 @@ rotation = -0.0190492
 scale = Vector2( 1.57791, 1.61158 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Porteria1/StaticBody2D5"]
-position = Vector2( 144.081, -309.377 )
+position = Vector2( 136.898, -301.504 )
 rotation = -0.693857
 shape = SubResource( 4 )
 
@@ -163,6 +173,12 @@ __meta__ = {
 "_edit_group_": true
 }
 
+[node name="gol" type="Sprite" parent="."]
+visible = false
+position = Vector2( 635, 246 )
+scale = Vector2( 0.695833, 0.695833 )
+texture = ExtResource( 12 )
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 visible = false
 position = Vector2( 1310, 373 )
@@ -174,31 +190,81 @@ __meta__ = {
 position = Vector2( 0, -2 )
 shape = SubResource( 3 )
 
+[node name="Marcador" type="Sprite" parent="."]
+position = Vector2( 645, 113 )
+scale = Vector2( 0.510047, 0.510047 )
+texture = ExtResource( 13 )
+
+[node name="resultado" type="Label" parent="."]
+visible = false
+margin_left = 355.0
+margin_top = 338.0
+margin_right = 930.0
+margin_bottom = 402.0
+custom_fonts/font = SubResource( 10 )
+text = "Jugador 1 gana!"
+align = 1
+valign = 1
+
+[node name="MarcadorTiempo" type="Label" parent="."]
+margin_left = 612.0
+margin_top = 126.0
+margin_right = 669.0
+margin_bottom = 148.0
+custom_fonts/font = SubResource( 9 )
+text = "00:00"
+
 [node name="MarcadorDerecha" type="Label" parent="."]
-margin_left = 707.0
-margin_top = 124.0
-margin_right = 747.0
-margin_bottom = 158.0
+margin_left = 656.0
+margin_top = 87.0
+margin_right = 692.0
+margin_bottom = 120.0
 custom_fonts/font = SubResource( 7 )
 text = "O"
 
-[node name="gol" type="Sprite" parent="."]
-visible = false
-position = Vector2( 635, 246 )
-scale = Vector2( 0.695833, 0.695833 )
-texture = ExtResource( 12 )
-
 [node name="MarcadorIzquierda" type="Label" parent="."]
-margin_left = 573.0
-margin_top = 122.0
-margin_right = 613.0
-margin_bottom = 156.0
+margin_left = 594.0
+margin_top = 85.0
+margin_right = 634.0
+margin_bottom = 119.0
 custom_fonts/font = SubResource( 6 )
 text = "0"
 
 [node name="GolTimer" type="Timer" parent="."]
 
+[node name="MenuPausa" type="Control" parent="." groups=["menu"]]
+visible = false
+margin_left = 271.0
+margin_top = 140.0
+margin_right = 852.0
+margin_bottom = 489.0
+
+[node name="Sprite" type="Sprite" parent="MenuPausa"]
+position = Vector2( 380, 231 )
+scale = Vector2( 1.04792, 0.642447 )
+texture = ExtResource( 16 )
+
+[node name="Reanudar" type="Button" parent="MenuPausa"]
+pause_mode = 2
+margin_left = 219.0
+margin_top = 188.0
+margin_right = 316.0
+margin_bottom = 279.0
+icon = ExtResource( 15 )
+flat = true
+
+[node name="Salir" type="Button" parent="MenuPausa"]
+pause_mode = 2
+margin_left = 445.0
+margin_top = 186.0
+margin_right = 542.0
+margin_bottom = 277.0
+icon = ExtResource( 17 )
+flat = true
+
 [connection signal="body_entered" from="Pelota" to="Pelota" method="_on_Pelota_body_entered"]
 [connection signal="body_entered" from="Porteria1/Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="area_entered" from="Porteria2/Area2DDerecha" to="." method="_on_Area2D_area_entered"]
 [connection signal="body_entered" from="Porteria2/Area2DDerecha" to="." method="_on_Area2DDerecha_body_entered"]
+[connection signal="pressed" from="MenuPausa/Reanudar" to="." method="_on_Reanudar_pressed"]
+[connection signal="pressed" from="MenuPausa/Salir" to="." method="_on_Salir_pressed"]

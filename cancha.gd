@@ -8,7 +8,7 @@ var posicion_inicial_jugador1 = Vector2()
 var posicion_inicial_jugador2 = Vector2()
 
 # Configuración del partido
-var tiempo_total = 90 # Tiempo total del partido en segundos
+var tiempo_total = 25 # Tiempo total del partido en segundos
 var tiempo_restante = tiempo_total
 var puntos_meta = 10 # Meta de puntos para finalizar el partido
 onready var temporizador_partido = Timer.new() # Temporizador para el tiempo del partido
@@ -99,14 +99,14 @@ func _fin_partido():
 	# Mostrar el ganador
 	if jugador1 > jugador2:
 		print("¡Jugador 1 gana el partido!")
-		$gol.text = "¡Jugador 1 gana!"
+		$resultado.text = "¡Jugador 1 gana!"
 	elif jugador2 > jugador1:
 		print("¡Jugador 2 gana el partido!")
-		$gol.text = "¡Jugador 2 gana!"
+		$resultado.text = " ¡Jugador 2 gana!"
 	else:
 		print("¡Empate!")
-		$gol.text = "¡Empate!"
-	$gol.visible = true
+		$resultado.text = "¡Empate!"
+	$resultado.visible = true
 
 # Función para actualizar la interfaz
 func _actualizar_ui():

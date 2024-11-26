@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://img/estadios/OutDoor.jpg" type="Texture" id=1]
+[ext_resource path="res://img/estadios/Stadium.jpg" type="Texture" id=2]
+[ext_resource path="res://img/New Project (10).png" type="Texture" id=3]
+[ext_resource path="res://estadios.gd" type="Script" id=4]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 587.0
+margin_top = 268.0
+margin_right = 2587.0
+margin_bottom = 1394.0
+rect_scale = Vector2( 0.19564, 0.203308 )
+
+[node name="Estadio" type="TextureButton" parent="VBoxContainer"]
+margin_right = 2000.0
+margin_bottom = 1126.0
+texture_normal = ExtResource( 2 )
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+margin_left = 46.0
+margin_top = 273.0
+margin_right = 2046.0
+margin_bottom = 1399.0
+rect_scale = Vector2( 0.194301, 0.196743 )
+
+[node name="Campo" type="TextureButton" parent="VBoxContainer2"]
+margin_right = 2000.0
+margin_bottom = 1126.0
+texture_normal = ExtResource( 1 )
+script = ExtResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 537, 130 )
+scale = Vector2( 0.584905, 0.605768 )
+texture = ExtResource( 3 )
+
+[connection signal="pressed" from="VBoxContainer/Estadio" to="VBoxContainer2/Campo" method="_on_Estadio_pressed"]
+[connection signal="pressed" from="VBoxContainer2/Campo" to="VBoxContainer2/Campo" method="_on_Campo_pressed"]

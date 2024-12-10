@@ -1,0 +1,161 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://img/paises/England.png" type="Texture" id=2]
+[ext_resource path="res://img/paises/Brazil.png" type="Texture" id=3]
+[ext_resource path="res://img/paises/Sapin.png" type="Texture" id=4]
+[ext_resource path="res://img/paises/Italy.png" type="Texture" id=5]
+[ext_resource path="res://img/paises/Germany.png" type="Texture" id=6]
+[ext_resource path="res://img/paises/Portugal.png" type="Texture" id=7]
+[ext_resource path="res://img/paises/Japan.png" type="Texture" id=8]
+[ext_resource path="res://img/paises/Netherlands.png" type="Texture" id=9]
+[ext_resource path="res://img/Touch to Start-01.png" type="Texture" id=10]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Control
+
+# Carga las imágenes en un diccionario, con el nombre del país como clave.
+var paises_imagenes = {
+	\"Alemania\": preload(\"res://img/jugadores/Alemania.png\"),
+	\"Brasil\": preload(\"res://img/jugadores/Brasil.png\"),
+	\"Espana\": preload(\"res://img/jugadores/España.png\"),
+	\"Holanda\": preload(\"res://img/jugadores/Holanda.png\"),
+	\"Inglaterra\": preload(\"res://img/jugadores/Inglaterra.png\"),
+	\"Italia\": preload(\"res://img/jugadores/Italia.png\"),
+	\"Japon\": preload(\"res://img/jugadores/Japon.png\"),
+	\"Portugal\": preload(\"res://img/jugadores/Portugal.png\")
+}
+
+# Referencia al sprite del jugador que se cambiará
+ # Asegúrate de que el nodo tenga este nombre o ajusta la ruta
+# Función para cambiar la imagen del sprite
+func cambiar_imagen_jugador(pais):
+	var jugador = get_node(\"/root/Control/jugador\")
+	if pais in paises_imagenes:
+		jugador.texture = paises_imagenes[pais]
+	else:
+		print(\"No se encontró la imagen para\", pais)
+
+func _on_Brasil_pressed():
+	cambiar_imagen_jugador(\"Brasil\")
+
+
+func _on_Inglaterra_pressed():
+	cambiar_imagen_jugador(\"Inglaterra\")
+
+
+func _on_Alemania_pressed():
+	cambiar_imagen_jugador(\"Alemania\")
+
+
+func _on_Italia_pressed():
+	cambiar_imagen_jugador(\"Italia\")
+
+
+func _on_Japon_pressed():
+	cambiar_imagen_jugador(\"Japon\")
+
+
+func _on_Holanda_pressed():
+	cambiar_imagen_jugador(\"Holanda\")
+
+
+func _on_Portugal_pressed():
+	cambiar_imagen_jugador(\"Portugal\")
+
+
+func _on_Espana_pressed():
+	cambiar_imagen_jugador(\"Espana\")
+"
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = SubResource( 1 )
+
+[node name="GridContainer" type="GridContainer" parent="."]
+margin_left = 59.0
+margin_top = 178.0
+margin_right = 290.0
+margin_bottom = 838.0
+rect_scale = Vector2( 0.683963, 0.547083 )
+
+[node name="Brasil" type="TextureButton" parent="GridContainer"]
+margin_right = 231.0
+margin_bottom = 162.0
+rect_pivot_offset = Vector2( -547, -75 )
+texture_normal = ExtResource( 3 )
+
+[node name="Inglaterra" type="TextureButton" parent="GridContainer"]
+margin_top = 166.0
+margin_right = 231.0
+margin_bottom = 328.0
+rect_pivot_offset = Vector2( -547, -75 )
+texture_normal = ExtResource( 2 )
+
+[node name="Alemania" type="TextureButton" parent="GridContainer"]
+margin_top = 332.0
+margin_right = 231.0
+margin_bottom = 494.0
+rect_pivot_offset = Vector2( -547, -75 )
+texture_normal = ExtResource( 6 )
+
+[node name="Italia" type="TextureButton" parent="GridContainer"]
+margin_top = 498.0
+margin_right = 231.0
+margin_bottom = 660.0
+rect_pivot_offset = Vector2( -547, -75 )
+texture_normal = ExtResource( 5 )
+
+[node name="GridContainer2" type="GridContainer" parent="."]
+margin_left = 219.0
+margin_top = 178.0
+margin_right = 450.0
+margin_bottom = 838.0
+rect_scale = Vector2( 0.601333, 0.546178 )
+
+[node name="Japon" type="TextureButton" parent="GridContainer2"]
+margin_right = 231.0
+margin_bottom = 162.0
+rect_pivot_offset = Vector2( -547, -75 )
+texture_normal = ExtResource( 8 )
+
+[node name="Holanda" type="TextureButton" parent="GridContainer2"]
+margin_top = 166.0
+margin_right = 231.0
+margin_bottom = 328.0
+rect_pivot_offset = Vector2( -547, -75 )
+texture_normal = ExtResource( 9 )
+
+[node name="Portugal" type="TextureButton" parent="GridContainer2"]
+margin_top = 332.0
+margin_right = 231.0
+margin_bottom = 494.0
+rect_pivot_offset = Vector2( -547, -75 )
+texture_normal = ExtResource( 7 )
+
+[node name="Espana" type="TextureButton" parent="GridContainer2"]
+margin_top = 498.0
+margin_right = 231.0
+margin_bottom = 660.0
+rect_pivot_offset = Vector2( -547, -75 )
+texture_normal = ExtResource( 4 )
+
+[node name="jugador" type="Sprite" parent="."]
+position = Vector2( 685, 297 )
+
+[node name="TextureButton" type="TextureButton" parent="."]
+margin_left = 656.0
+margin_top = 544.0
+margin_right = 1286.0
+margin_bottom = 614.0
+rect_scale = Vector2( 0.545566, 0.525208 )
+texture_normal = ExtResource( 10 )
+
+[connection signal="pressed" from="GridContainer/Brasil" to="." method="_on_Brasil_pressed"]
+[connection signal="pressed" from="GridContainer/Inglaterra" to="." method="_on_Inglaterra_pressed"]
+[connection signal="pressed" from="GridContainer/Alemania" to="." method="_on_Alemania_pressed"]
+[connection signal="pressed" from="GridContainer/Italia" to="." method="_on_Italia_pressed"]
+[connection signal="pressed" from="GridContainer2/Japon" to="." method="_on_Japon_pressed"]
+[connection signal="pressed" from="GridContainer2/Holanda" to="." method="_on_Holanda_pressed"]
+[connection signal="pressed" from="GridContainer2/Portugal" to="." method="_on_Portugal_pressed"]
+[connection signal="pressed" from="GridContainer2/Espana" to="." method="_on_Espana_pressed"]

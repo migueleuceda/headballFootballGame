@@ -1,19 +1,8 @@
 [gd_scene load_steps=27 format=2]
 
-<<<<<<< HEAD
-<<<<<<< Updated upstream
 [ext_resource path="res://personajes_escenas/Player1.tscn" type="PackedScene" id=1]
-=======
-[ext_resource path="res://brazilplayer.tscn" type="PackedScene" id=1]
->>>>>>> Stashed changes
 [ext_resource path="res://headsoccer/headsoccer/estadioOficial.jpg" type="Texture" id=2]
 [ext_resource path="res://personajes_escenas/Player2.tscn" type="PackedScene" id=3]
-=======
-[ext_resource path="res://KinematicBody2D.tscn" type="PackedScene" id=1]
-[ext_resource path="res://headsoccer/headsoccer/JPG/Game Background/Stadium.jpg" type="Texture" id=2]
-[ext_resource path="res://spainPlayer.tscn" type="PackedScene" id=3]
-[ext_resource path="res://spainPlayer.gd" type="Script" id=4]
->>>>>>> 4d83e17b539e081a6a48261d3c37ef38f6496ad6
 [ext_resource path="res://headsoccer/headsoccer/UI and Objects/Goal parts/Proyecto nuevo (1).png" type="Texture" id=5]
 [ext_resource path="res://headsoccer/headsoccer/UI and Objects/Goal parts/Lado.png" type="Texture" id=6]
 [ext_resource path="res://headsoccer/headsoccer/UI and Objects/Goal parts/Lado2.png" type="Texture" id=7]
@@ -41,7 +30,7 @@ extents = Vector2( 64.7499, 127.658 )
 extents = Vector2( 801.75, 82.5 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 801, 42.5 )
+extents = Vector2( 807, 46 )
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 30, 451 )
@@ -66,13 +55,8 @@ font_data = ExtResource( 14 )
 script = ExtResource( 10 )
 
 [node name="EstadioOficial" type="Sprite" parent="."]
-<<<<<<< Updated upstream
 position = Vector2( 639.703, 358.5 )
 scale = Vector2( 0.639296, 0.638543 )
-=======
-position = Vector2( 800.406, 451 )
-scale = Vector2( 0.798594, 0.797513 )
->>>>>>> Stashed changes
 texture = ExtResource( 2 )
 __meta__ = {
 "_edit_lock_": true
@@ -172,7 +156,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="techo"]
-position = Vector2( 798, 39.5 )
+position = Vector2( 797, 36 )
 shape = SubResource( 2 )
 
 [node name="pared" type="StaticBody2D" parent="."]
@@ -194,12 +178,8 @@ scale = Vector2( 0.695833, 0.695833 )
 texture = ExtResource( 12 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-<<<<<<< Updated upstream
 visible = false
 position = Vector2( 1310, 373 )
-=======
-position = Vector2( 1571, 447 )
->>>>>>> Stashed changes
 __meta__ = {
 "_edit_group_": true
 }

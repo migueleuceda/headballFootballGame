@@ -11,8 +11,12 @@ config_version=4
 [application]
 
 config/name="Headball Football"
-run/main_scene="res://cancha.tscn"
+run/main_scene="res://Interfaz_Menu/MenuPrincipal.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+GameData="*res://GameData.gd"
 
 [display]
 

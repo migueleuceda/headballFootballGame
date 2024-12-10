@@ -1,6 +1,6 @@
-extends TextureButton
+extends Control
 
-var campo;
+
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -16,11 +16,9 @@ func _ready():
 #	pass
 
 
-func _on_Campo_pressed():
-	campo = "OutDoor.png"
-	get_tree().change_scene("res://Personaje.tscn")
+func _on_btquit_pressed():
+	get_tree().quit()
 
 
-func _on_Estadio_pressed():
-	campo = "Stadium.png"
-	get_tree().change_scene("res://Personaje.tscn")
+func _on_btjugar_pressed():
+	get_tree().change_scene("res://Interfaz_Menu/MenuSeleccion.tscn")

@@ -8,7 +8,7 @@ var posicion_inicial_jugador1 = Vector2()
 var posicion_inicial_jugador2 = Vector2()
 
 # Configuración del partido
-var tiempo_total = 25 # Tiempo total del partido en segundos
+var tiempo_total = 60 # Tiempo total del partido en segundos
 var tiempo_restante = tiempo_total
 var puntos_meta = 10 # Meta de puntos para finalizar el partido
 onready var temporizador_partido = Timer.new() # Temporizador para el tiempo del partido
@@ -20,8 +20,9 @@ func _ready():
 	$gol.visible = false # Oculta el sprite de gol al inicio
 	
 	# Guarda las posiciones iniciales de los jugadores
-	posicion_inicial_jugador1 = $spainplayer.position
-	posicion_inicial_jugador2 = $brazilPlayer.position
+	
+	posicion_inicial_jugador1 = $Player1.position
+	posicion_inicial_jugador2 = $Player2.position
 
 	# Conectar los eventos
 	$GolTimer.connect("timeout", self, "_on_GolTimer_timeout")
@@ -40,7 +41,7 @@ func _ready():
 	# Actualiza la interfaz de inicio
 	_actualizar_ui()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	# Detectar si se presiona la tecla de pausa
 	if Input.is_action_just_pressed("ui_pause"):
 		get_tree().get_nodes_in_group("menu")[0].visible = true
@@ -68,8 +69,8 @@ func reiniciarNivel():
 	$Pelota.reset = true
 
 	# Recoloca a los jugadores en sus posiciones iniciales
-	$spainplayer.position = posicion_inicial_jugador1
-	$brazilPlayer.position = posicion_inicial_jugador2
+	$Player1.position = posicion_inicial_jugador1
+	$Player2.position = posicion_inicial_jugador2
 
 func mostrarGol():
 	$gol.visible = true

@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://img/New Project (5).png" type="Texture" id=1]
-[ext_resource path="res://img/Play.png" type="Texture" id=2]
-[ext_resource path="res://menuScript.gd" type="Script" id=3]
+[ext_resource path="res://img/Play.png" type="Texture" id=1]
+[ext_resource path="res://img/New Project (5).png" type="Texture" id=2]
+[ext_resource path="res://pantallaIni.gd" type="Script" id=3]
 
-[node name="Menú" type="Control"]
+[node name="pantallaIni" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -6.0
@@ -18,21 +18,21 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -144.0
-margin_top = 142.0
-margin_right = 880.0
-margin_bottom = 742.0
+margin_left = -424.0
+margin_top = -207.0
+margin_right = 600.0
+margin_bottom = 393.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="VBoxContainer"]
 
 [node name="Logo" type="Sprite" parent="VBoxContainer"]
 position = Vector2( 141, -242 )
 scale = Vector2( 0.724074, 0.767593 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 
 [node name="TextureButton" type="TextureButton" parent="VBoxContainer"]
 margin_right = 1024.0
 margin_bottom = 80.0
-texture_normal = ExtResource( 2 )
+texture_normal = ExtResource( 1 )
 
 [connection signal="pressed" from="VBoxContainer/TextureButton" to="." method="_on_TextureButton_pressed"]

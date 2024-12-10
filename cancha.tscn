@@ -1,5 +1,6 @@
 [gd_scene load_steps=27 format=2]
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 [ext_resource path="res://personajes_escenas/Player1.tscn" type="PackedScene" id=1]
 =======
@@ -7,6 +8,12 @@
 >>>>>>> Stashed changes
 [ext_resource path="res://headsoccer/headsoccer/estadioOficial.jpg" type="Texture" id=2]
 [ext_resource path="res://personajes_escenas/Player2.tscn" type="PackedScene" id=3]
+=======
+[ext_resource path="res://KinematicBody2D.tscn" type="PackedScene" id=1]
+[ext_resource path="res://headsoccer/headsoccer/JPG/Game Background/Stadium.jpg" type="Texture" id=2]
+[ext_resource path="res://spainPlayer.tscn" type="PackedScene" id=3]
+[ext_resource path="res://spainPlayer.gd" type="Script" id=4]
+>>>>>>> 4d83e17b539e081a6a48261d3c37ef38f6496ad6
 [ext_resource path="res://headsoccer/headsoccer/UI and Objects/Goal parts/Proyecto nuevo (1).png" type="Texture" id=5]
 [ext_resource path="res://headsoccer/headsoccer/UI and Objects/Goal parts/Lado.png" type="Texture" id=6]
 [ext_resource path="res://headsoccer/headsoccer/UI and Objects/Goal parts/Lado2.png" type="Texture" id=7]

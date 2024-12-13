@@ -8,7 +8,7 @@ var posicion_inicial_jugador1 = Vector2()
 var posicion_inicial_jugador2 = Vector2()
 
 # Configuración del partido
-var tiempo_total = 60 # Tiempo total del partido en segundos
+var tiempo_total = 120 # Tiempo total del partido en segundos
 var tiempo_restante = tiempo_total
 var puntos_meta = 10 # Meta de puntos para finalizar el partido
 onready var temporizador_partido = Timer.new() # Temporizador para el tiempo del partido
@@ -18,15 +18,14 @@ onready var menu_pausa = $MenuPausa
 
 func _ready():
 	$gol.visible = false # Oculta el sprite de gol al inicio
-	
+
 	# Guarda las posiciones iniciales de los jugadores
-	
 	posicion_inicial_jugador1 = $Player1.position
 	posicion_inicial_jugador2 = $Player2.position
 
 	# Conectar los eventos
 	$GolTimer.connect("timeout", self, "_on_GolTimer_timeout")
-	
+
 	# Configurar y agregar el temporizador del partido
 	add_child(temporizador_partido)
 	temporizador_partido.wait_time = 1
@@ -44,8 +43,8 @@ func _ready():
 func _physics_process(_delta):
 	# Detectar si se presiona la tecla de pausa
 	if Input.is_action_just_pressed("ui_pause"):
-		get_tree().get_nodes_in_group("menu")[0].visible = true
-		get_tree().paused = true;
+		menu_pausa.visible = true
+		get_tree().paused = true
 
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("Bola"):
@@ -94,26 +93,35 @@ func verificar_final_partido():
 # Función para finalizar el partido
 func _fin_partido():
 	temporizador_partido.stop()
-	$Pelota.queue_free() # Elimina la pelota del juego para evitar interacción
-	get_tree().paused = true # Pausa el juego
-
+	
+	# Deja la pelota en una posición fija, por ejemplo en el centro
+	$Pelota.position = Vector2(634, 562) 
+	# Pausa el juego
+	get_tree().paused = true
+	
+	# Muestra el menú de pausa
+	menu_pausa.visible = true 
+	
 	# Mostrar el ganador
 	if jugador1 > jugador2:
 		print("¡Jugador 1 gana el partido!")
 		$resultado.text = "¡Jugador 1 gana!"
 	elif jugador2 > jugador1:
 		print("¡Jugador 2 gana el partido!")
-		$resultado.text = " ¡Jugador 2 gana!"
+		$resultado.text = "¡Jugador 2 gana!"
 	else:
 		print("¡Empate!")
 		$resultado.text = "¡Empate!"
+	
 	$resultado.visible = true
+	$MenuPausa/Reanudar.disabled = true
+
 
 # Función para actualizar la interfaz
 func _actualizar_ui():
 	$MarcadorDerecha.text = str(jugador2)
 	$MarcadorIzquierda.text = str(jugador1)
-	
+
 	# Actualizar el tiempo en formato MM:SS
 	var minutos = int(tiempo_restante / 60)
 	var segundos = tiempo_restante % 60
@@ -121,12 +129,14 @@ func _actualizar_ui():
 
 # Función para alternar entre pausa y reanudar
 func alternar_pausa():
+	
 	if get_tree().paused:
 		get_tree().paused = false # Reanuda el juego
 		menu_pausa.visible = false # Oculta el menú de pausa
 	else:
 		get_tree().paused = true # Pausa el juego
 		menu_pausa.visible = true # Muestra el menú de pausa
+		
 
 # Función para reanudar el partido
 func reanudar_partido():
@@ -134,13 +144,49 @@ func reanudar_partido():
 	menu_pausa.visible = false # Oculta el menú de pausa
 	temporizador_partido.start() # Reinicia el temporizador si fue detenido
 
-# Función para salir del juego
-func salir_del_juego():
-	get_tree().quit()
+func reiniciar_partido():
+	$MenuPausa/Reanudar.disabled = false
+	# Reinicia las puntuaciones
+	jugador1 = 0
+	jugador2 = 0
+	menu_pausa.visible = false
+	# Restablece el tiempo restante
+	tiempo_restante = tiempo_total
+
+	# Recoloca a los jugadores en sus posiciones iniciales
+	$Player1.position = posicion_inicial_jugador1
+	$Player2.position = posicion_inicial_jugador2
+
+	# Reinicia la pelota
+	$Pelota.reset = true
+
+	# Reinicia la visibilidad de los elementos del partido
+	$gol.visible = false
+	$resultado.visible = false
+
+	# Reinicia la interfaz
+	_actualizar_ui()
+
+	# Reinicia el temporizador del partido
+	if not temporizador_partido.is_stopped():
+		temporizador_partido.stop()
+	temporizador_partido.start()
+
+	print("El partido ha sido reiniciado")
+
 
 
 func _on_Reanudar_pressed():
 	reanudar_partido()
-	
+
+func _on_Reiniciar_pressed():
+	print("Botón de reinicio presionado.")
+	get_tree().paused = false 
+	reiniciar_partido()
+
 func _on_Salir_pressed():
-	salir_del_juego()
+	get_tree().paused = false # Asegúrate de reanudar el árbol antes de cambiar de escena
+	get_tree().change_scene("res://Interfaz_Menu/MenuPrincipal.tscn")
+
+
+

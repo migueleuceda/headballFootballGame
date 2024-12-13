@@ -12,11 +12,12 @@ config_version=4
 
 config/name="Headball Football"
 run/main_scene="res://Interfaz_Menu/MenuPrincipal.tscn"
-config/icon="res://icon.png"
+config/icon="res://headsoccer/headsoccer/PSD/Game Icon.png"
 
 [autoload]
 
 GameData="*res://GameData.gd"
+MusicManager="*res://ScriptsGenerales/MusicManager.gd"
 
 [display]
 
@@ -113,6 +114,11 @@ jugador2entrada={
 ui_pause={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777217,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_Pass_Music={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":88,"unicode":0,"echo":false,"script":null)
  ]
 }
 

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://sonido/Waka_Waka_Esto_es_Africa_Cancion_Oficial_de_la_Copa_Mundial_de_la_FIFA_Sudafrica_2010_[_YouConvert.net_].mp3" type="AudioStream" id=1]
+[ext_resource path="res://Interfaz_Menu/AudioStreamPlayer.gd" type="Script" id=2]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource( 1 )
+autoplay = true
+script = ExtResource( 2 )

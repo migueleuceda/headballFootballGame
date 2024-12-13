@@ -4,6 +4,7 @@ extends Control
 var personajes_jugador1 = ["res://personajes_Animaciones/brazilplayer.tres", "res://personajes_Animaciones/spainPlayer.tres"]
 var personajes_jugador2 = ["res://personajes_Animaciones/spainPlayer.tres", "res://personajes_Animaciones/brazilplayer.tres"]
 
+
 var indice_jugador1 = 0
 var indice_jugador2 = 0
 
@@ -49,7 +50,7 @@ func _cargar_personaje_jugador1(indice):
 
 	# Cargar el recurso del personaje actual
 	var personaje_frames = load(personajes_jugador1[indice])
-	
+
 	if personaje_frames is SpriteFrames:
 		# Crear un AnimatedSprite y asignarle los frames
 		var animated_sprite = AnimatedSprite.new()
@@ -59,7 +60,6 @@ func _cargar_personaje_jugador1(indice):
 	else:
 		print("Error: El recurso no es del tipo SpriteFrames.")
 
-# Función para cargar el personaje del jugador 2
 func _cargar_personaje_jugador2(indice):
 	# Limpiar cualquier personaje previo
 	for child in vista_personaje_jugador2.get_children():
@@ -68,7 +68,7 @@ func _cargar_personaje_jugador2(indice):
 
 	# Cargar el recurso del personaje actual
 	var personaje_frames = load(personajes_jugador2[indice])
-	
+
 	if personaje_frames is SpriteFrames:
 		# Crear un AnimatedSprite y asignarle los frames
 		var animated_sprite = AnimatedSprite.new()
@@ -78,13 +78,14 @@ func _cargar_personaje_jugador2(indice):
 	else:
 		print("Error: El recurso no es del tipo SpriteFrames.")
 
+
 # Función para mostrar el personaje anterior del jugador 1
 func _mostrar_anterior_jugador1():
 	if !listo_jugador1:  # Solo cambiar si el jugador no está listo
 		indice_jugador1 -= 1
 		if indice_jugador1 < 0:
 			indice_jugador1 = personajes_jugador1.size() - 1
-		_cargar_personaje_jugador1(indice_jugador1)
+		#_cargar_personaje_jugador1(indice_jugador1)
 
 # Función para mostrar el personaje siguiente del jugador 1
 func _mostrar_siguiente_jugador1():
@@ -92,7 +93,7 @@ func _mostrar_siguiente_jugador1():
 		indice_jugador1 += 1
 		if indice_jugador1 >= personajes_jugador1.size():
 			indice_jugador1 = 0
-		_cargar_personaje_jugador1(indice_jugador1)
+		#_cargar_personaje_jugador1(indice_jugador1)
 
 # Función para confirmar la selección del jugador 1
 func _confirmar_seleccion_jugador1():
@@ -118,7 +119,7 @@ func _mostrar_anterior_jugador2():
 		indice_jugador2 -= 1
 		if indice_jugador2 < 0:
 			indice_jugador2 = personajes_jugador2.size() - 1
-		_cargar_personaje_jugador2(indice_jugador2)
+		#_cargar_personaje_jugador2(indice_jugador2)
 
 # Función para mostrar el personaje siguiente del jugador 2
 func _mostrar_siguiente_jugador2():
@@ -126,7 +127,8 @@ func _mostrar_siguiente_jugador2():
 		indice_jugador2 += 1
 		if indice_jugador2 >= personajes_jugador2.size():
 			indice_jugador2 = 0
-		_cargar_personaje_jugador2(indice_jugador2)
+		#_cargar_personaje_jugador2(indice_jugador2)
+		
 
 # Función para confirmar la selección del jugador 2
 func _confirmar_seleccion_jugador2():

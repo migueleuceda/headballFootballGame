@@ -1,10 +1,9 @@
 extends RigidBody2D
-
 func _draw():
 	draw_circle(Vector2(0, 0), 5, Color(1, 1, 1))
 
 # Variables
-var velocidad = 500
+var velocidad = 5000
 var direccion = 1
 var reset = false
 

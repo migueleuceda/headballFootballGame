@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Avicii - The Nights (FIFA 15 Soundtrack)_[_YouConvert.net_].mp3-a1e9cd345d68cb153e9feddb6cf3bf35.mp3str"
+
+[deps]
+
+source_file="res://Interfaz_Menu/Avicii - The Nights (FIFA 15 Soundtrack)_[_YouConvert.net_].mp3"
+dest_files=[ "res://.import/Avicii - The Nights (FIFA 15 Soundtrack)_[_YouConvert.net_].mp3-a1e9cd345d68cb153e9feddb6cf3bf35.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

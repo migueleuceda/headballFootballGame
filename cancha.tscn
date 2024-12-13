@@ -1,8 +1,9 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://personajes_escenas/Player1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://headsoccer/headsoccer/estadioOficial.jpg" type="Texture" id=2]
 [ext_resource path="res://personajes_escenas/Player2.tscn" type="PackedScene" id=3]
+[ext_resource path="res://headsoccer/headsoccer/UI and Objects/Button/Normal/Button Normal-20.png" type="Texture" id=4]
 [ext_resource path="res://headsoccer/headsoccer/UI and Objects/Goal parts/Proyecto nuevo (1).png" type="Texture" id=5]
 [ext_resource path="res://headsoccer/headsoccer/UI and Objects/Goal parts/Lado.png" type="Texture" id=6]
 [ext_resource path="res://headsoccer/headsoccer/UI and Objects/Goal parts/Lado2.png" type="Texture" id=7]
@@ -16,6 +17,8 @@
 [ext_resource path="res://headsoccer/headsoccer/UI and Objects/Button/Normal/Button Normal-01.png" type="Texture" id=15]
 [ext_resource path="res://headsoccer/headsoccer/Fondo-gris-transparente-2.png" type="Texture" id=16]
 [ext_resource path="res://headsoccer/headsoccer/UI and Objects/Button/Normal/Button Normal-36.png" type="Texture" id=17]
+[ext_resource path="res://pistaMusica.tscn" type="PackedScene" id=18]
+[ext_resource path="res://headsoccer/headsoccer/UI and Objects/Button/Disable/Button Disable-01.png" type="Texture" id=19]
 
 [sub_resource type="PhysicsMaterial" id=8]
 bounce = 0.7
@@ -35,10 +38,6 @@ extents = Vector2( 807, 46 )
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 30, 451 )
 
-[sub_resource type="DynamicFont" id=10]
-size = 60
-font_data = ExtResource( 14 )
-
 [sub_resource type="DynamicFont" id=9]
 size = 20
 font_data = ExtResource( 14 )
@@ -49,6 +48,14 @@ font_data = ExtResource( 14 )
 
 [sub_resource type="DynamicFont" id=6]
 size = 28
+font_data = ExtResource( 14 )
+
+[sub_resource type="StyleBoxTexture" id=11]
+texture = ExtResource( 19 )
+region_rect = Rect2( 0, 0, 85, 85 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 60
 font_data = ExtResource( 14 )
 
 [node name="cancha" type="Node2D"]
@@ -72,12 +79,6 @@ position = Vector2( -22, 405 )
 scale = Vector2( 0.597969, 0.618329 )
 texture = ExtResource( 6 )
 
-[node name="Player1" parent="." instance=ExtResource( 1 )]
-position = Vector2( 112, 480 )
-
-[node name="Player2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1056, 488 )
-
 [node name="Pelota" type="RigidBody2D" parent="." groups=["Bola"]]
 position = Vector2( 634, 562 )
 mass = 10.0
@@ -92,6 +93,12 @@ one_way_collision_margin = 0.0
 [node name="Sprite" type="Sprite" parent="Pelota"]
 scale = Vector2( 0.410705, 0.410705 )
 texture = ExtResource( 9 )
+
+[node name="Player1" parent="." instance=ExtResource( 1 )]
+position = Vector2( 55, 483 )
+
+[node name="Player2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1107, 479 )
 
 [node name="Porteria1" type="Sprite" parent="."]
 position = Vector2( -82.5, 449.204 )
@@ -193,17 +200,6 @@ position = Vector2( 645, 113 )
 scale = Vector2( 0.510047, 0.510047 )
 texture = ExtResource( 13 )
 
-[node name="resultado" type="Label" parent="."]
-visible = false
-margin_left = 355.0
-margin_top = 338.0
-margin_right = 930.0
-margin_bottom = 402.0
-custom_fonts/font = SubResource( 10 )
-text = "Jugador 1 gana!"
-align = 1
-valign = 1
-
 [node name="MarcadorTiempo" type="Label" parent="."]
 margin_left = 612.0
 margin_top = 126.0
@@ -213,17 +209,17 @@ custom_fonts/font = SubResource( 9 )
 text = "00:00"
 
 [node name="MarcadorDerecha" type="Label" parent="."]
-margin_left = 656.0
-margin_top = 87.0
-margin_right = 692.0
-margin_bottom = 120.0
+margin_left = 661.0
+margin_top = 89.0
+margin_right = 683.0
+margin_bottom = 119.0
 custom_fonts/font = SubResource( 7 )
 text = "O"
 
 [node name="MarcadorIzquierda" type="Label" parent="."]
-margin_left = 594.0
-margin_top = 85.0
-margin_right = 634.0
+margin_left = 596.0
+margin_top = 89.0
+margin_right = 615.0
 margin_bottom = 119.0
 custom_fonts/font = SubResource( 6 )
 text = "0"
@@ -231,38 +227,61 @@ text = "0"
 [node name="GolTimer" type="Timer" parent="."]
 
 [node name="MenuPausa" type="Control" parent="." groups=["menu"]]
-visible = false
 margin_left = 271.0
 margin_top = 140.0
 margin_right = 852.0
 margin_bottom = 489.0
 
 [node name="Sprite" type="Sprite" parent="MenuPausa"]
-position = Vector2( 380, 231 )
+position = Vector2( 377, 232 )
 scale = Vector2( 1.04792, 0.642447 )
 texture = ExtResource( 16 )
 
-[node name="Reanudar" type="Button" parent="MenuPausa"]
+[node name="Reanudar" type="Button" parent="MenuPausa" groups=["menu"]]
 pause_mode = 2
-margin_left = 219.0
-margin_top = 188.0
-margin_right = 316.0
-margin_bottom = 279.0
+margin_left = 208.0
+margin_top = 189.0
+margin_right = 305.0
+margin_bottom = 280.0
+custom_styles/disabled = SubResource( 11 )
 icon = ExtResource( 15 )
 flat = true
 
-[node name="Salir" type="Button" parent="MenuPausa"]
+[node name="Reiniciar" type="Button" parent="MenuPausa" groups=["menu"]]
 pause_mode = 2
-margin_left = 445.0
-margin_top = 186.0
-margin_right = 542.0
-margin_bottom = 277.0
+margin_left = 325.0
+margin_top = 189.0
+margin_right = 422.0
+margin_bottom = 280.0
+icon = ExtResource( 4 )
+flat = true
+
+[node name="Salir" type="Button" parent="MenuPausa" groups=["menu"]]
+pause_mode = 2
+margin_left = 451.0
+margin_top = 189.0
+margin_right = 548.0
+margin_bottom = 280.0
 icon = ExtResource( 17 )
 flat = true
+
+[node name="resultado" type="Label" parent="."]
+visible = false
+margin_left = 357.0
+margin_top = 238.0
+margin_right = 932.0
+margin_bottom = 302.0
+custom_fonts/font = SubResource( 10 )
+text = "Jugador 1 gana!"
+align = 1
+valign = 1
+
+[node name="AudioStreamPlayer" parent="." instance=ExtResource( 18 )]
 
 [connection signal="body_entered" from="Pelota" to="Pelota" method="_on_Pelota_body_entered"]
 [connection signal="body_entered" from="Porteria1/Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="area_entered" from="Porteria2/Area2DDerecha" to="." method="_on_Area2D_area_entered"]
 [connection signal="body_entered" from="Porteria2/Area2DDerecha" to="." method="_on_Area2DDerecha_body_entered"]
 [connection signal="pressed" from="MenuPausa/Reanudar" to="." method="_on_Reanudar_pressed"]
+[connection signal="pressed" from="MenuPausa/Reiniciar" to="." method="_on_Reiniciar_pressed"]
 [connection signal="pressed" from="MenuPausa/Salir" to="." method="_on_Salir_pressed"]

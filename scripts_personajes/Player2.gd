@@ -96,8 +96,14 @@ func _physics_process(delta):
 func chute_pelota():
 	var distancia = (pelota.global_position - global_position).length()
 	print("Distancia a la pelota:", distancia)
+	
 	# Verificar si la pelota está cerca del jugador
-	if (pelota.global_position - global_position).length() < 200: 
-		print("La pelota está cerca")# Ajusta el rango según sea necesario
-		pelota.chutar(Vector2(-360, -450)) # Llama al método "chutar" de la pelota
-
+	if distancia < 95: # Ajusta el rango según sea necesario
+		# Verificar si la pelota está delante del jugador y no por encima de su cabeza
+		if pelota.global_position.x < global_position.x and pelota.global_position.y > global_position.y:
+			print("La pelota está cerca, delante y no por encima del jugador")
+			pelota.chutar(Vector2(-360, -450)) # Llama al método "chutar" de la pelota
+		else:
+			print("La pelota está cerca pero no está en una posición válida para chutar")
+	else:
+		print("La pelota está fuera del rango para chutar")

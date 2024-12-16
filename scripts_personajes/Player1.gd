@@ -1,41 +1,36 @@
 extends KinematicBody2D
 
 # Variables de movimiento
-var velocidad = 200 # Velocidad de movimiento horizontal
-var gravedad = 800 # Fuerza de gravedad
-var fuerza_salto = -500 # Fuerza del salto (negativa para moverse hacia arriba)
-var velocidad_y = 0 # Velocidad vertical inicial
-var velocidad_entrada = 300 # Velocidad durante la entrada
-var realizando_entrada = false # Controla si está realizando la entrada
-var realizando_chute = false # Controla si está realizando la acción de chute
-var entrada_duracion = 0.5 # Duración de la animación de entrada en segundos
-var chute_duracion = 0.3 # Duración de la animación de chute en segundos
-var entrada_timer = 0.0 # Temporizador para la entrada
-var chute_timer = 0.0 # Temporizador para el chute
-
+var velocidad = 200 
+var gravedad = 800
+var fuerza_salto = -500 
+var velocidad_y = 0 
+var velocidad_entrada = 300
+var realizando_entrada = false 
+var realizando_chute = false 
+var entrada_duracion = 0.5 
+var chute_duracion = 0.3 
+var entrada_timer = 0.0
+var chute_timer = 0.0 
 # Dirección del movimiento
 var movimiento = Vector2.ZERO
 
-# Referencia al AnimatedSprite
 onready var animacion = $AnimatedSprite
-
-# Referencia a la pelota
 onready var pelota = get_node("/root/cancha/Pelota")
 
 func _physics_process(delta):
-	# Si está en modo "entrada", manejarlo por separado
 	if realizando_entrada:
 		entrada_timer -= delta
 		if entrada_timer <= 0:
 			realizando_entrada = false
-			velocidad = 200 # Restaurar la velocidad normal
+			velocidad = 200 
 		movimiento.x = velocidad_entrada
 
 	elif realizando_chute:
 		chute_timer -= delta
 		if chute_timer <= 0:
 			realizando_chute = false
-			animacion.play("default") # Volver a la animación predeterminada
+			animacion.play("default") 
 
 	else:
 		# Movimiento horizontal
@@ -68,19 +63,14 @@ func _physics_process(delta):
 			realizando_chute = true
 			chute_timer = chute_duracion
 			animacion.play("chutar")
-			chute_pelota() # Llama a la función para chutar la pelota
-
-		# Aplicar movimiento horizontal
+			chute_pelota() 
 		movimiento.x *= velocidad
 
-	# Aplicar gravedad
 	velocidad_y += gravedad * delta
 	movimiento.y = velocidad_y
 
-	# Mover el personaje
 	movimiento = move_and_slide(movimiento, Vector2.UP)
 
-	# Revisar si está en el suelo
 	if is_on_floor():
 		velocidad_y = 0
 
@@ -88,11 +78,9 @@ func chute_pelota():
 	var distancia = (pelota.global_position - global_position).length()
 	print("Distancia a la pelota:", distancia)
 	
-	# Verificar si la pelota está cerca del jugador
-	if distancia < 160: # Ajusta el rango según sea necesario
-		# Verificar si la pelota está delante del jugador y no por encima de su cabeza
+	if distancia < 160: 
 		if pelota.global_position.x > global_position.x and pelota.global_position.y > global_position.y:
 			print("La pelota está cerca, delante y no por encima del jugador")
-			pelota.chutar(Vector2(360, -450)) # Llama al método "chutar" de la pelota
+			pelota.chutar(Vector2(360, -450)) 
 		else:
 			print("La pelota está cerca pero no está en una posición válida para chutar")

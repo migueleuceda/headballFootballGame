@@ -16,10 +16,9 @@ func _integrate_forces(state: Physics2DDirectBodyState):
 		state.transform.origin = Vector2(612, 300)
 		reset = false
 
-# Función para manejar el chute
 func chutar(fuerza: Vector2):
 	print("Chutando la pelota con fuerza: ", fuerza)
-	linear_velocity = fuerza # Aplica la fuerza directamente a la velocidad lineal
+	linear_velocity = fuerza 
 
 func _on_Pelota_body_entered(body):
 	if body.is_in_group("player"):

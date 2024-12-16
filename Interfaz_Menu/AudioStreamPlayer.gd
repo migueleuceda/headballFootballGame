@@ -2,7 +2,6 @@ extends AudioStreamPlayer
 
 
 func _ready():
-	# Obtener la lista de canciones y el índice actual desde el MusicManager
 	MusicManager.music_tracks = [
 		"res://sonido/Waka_Waka_Esto_es_Africa_Cancion_Oficial_de_la_Copa_Mundial_de_la_FIFA_Sudafrica_2010_[_YouConvert.net_].mp3",
 		"res://sonido/Avicii - The Nights (FIFA 15 Soundtrack)_[_YouConvert.net_].mp3"
@@ -16,7 +15,6 @@ func _process(_delta):
 		_change_music()
 
 func _change_music():
-	# Cambiar la canción en el MusicManager
 	MusicManager.current_track_index = (MusicManager.current_track_index + 1) % MusicManager.music_tracks.size()
 	stop()
 	stream = load(MusicManager.music_tracks[MusicManager.current_track_index])
